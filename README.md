@@ -5,7 +5,7 @@ This repository contains the code used for the article [_Label noise detection u
 
 ## Installation
 
-#### Install required
+#### Install required packages
 ```
 # classifiers
 install.packages('RSNNS') #mlp
@@ -50,16 +50,17 @@ source('./LNLib/NoiseDetection.R')
 ```
 
 ## How it works
-TODO: image of the process
 
- #### Data Cleaning 
+![process](https://user-images.githubusercontent.com/40217238/151442573-37d1d1fb-d1f6-45a0-9cb2-b53f6fdedcea.png)
+
+ #### 1. Data Cleaning 
  
    ```
    dat = LNLib.readAndTreatDataset("sample_data.arff")
    cleaned.data = LNLib.getCleanedData(dat)
    ```
 
-#### Generate Imbalance Ratio (IR)
+#### 2. Generate Imbalance Ratio (IR)
    
    ```
    #For IR of 50:50, use LNLib.IR.VALUES$IR.5050
@@ -68,21 +69,21 @@ TODO: image of the process
    data.2080 = LNLib.generateIR(cleaned.data,LNLib.IR.VALUES$IR.2080)
    ```
    
-#### Split data
+#### 3. Split data
    ```
   sample = sample.split(data.2080$class, SplitRatio = 0.70)
   train = subset(data.2080, sample == TRUE)
   test  = subset(data.2080, sample == FALSE)
   ```
 
-#### Noise Injection
+#### 4. Noise Injection
    
    ```
    #For 15% of noise and NCAR noise model (or noise ratio):
    info.injection = LNLib.injectNoise(test, 15, LNLib.NOISE.MODEL$NCAR)
    noisy.test = info.injection$noisy.data
    ```
-##### About the noise models
+##### About noise models
    The label noise model should be one of the following:
    1. `LNLib.NOISE.MODEL$NCAR` - noise equally distributed per class
    2. or `LNLib.NOISE.MODEL$NAR.MIN` - more noise in minority class, proportion of 1:9
@@ -136,7 +137,7 @@ $noise.ratio
 
 ``` 
 
-#### Select vote threshold / Ensemble prediction / Evaluation
+#### 5. Select vote threshold / Ensemble prediction / Evaluation
 ```
 #Get classification (of all algorithms) after noise being injected 
 classified.test = LNLib.getClassification(train,noisy.test) 
@@ -164,7 +165,7 @@ $n.noise.detected #Number of detections (correct or not)
 $n.noisy.labels #Number of noisy labels in data
 [1] 8
 ```
-##### About the ensemble threshold
+##### About ensemble threshold
 It is also possible to use one of the following options as input 
 1. `LNLib.ENSEMBLE.THRESHOLD$CONSENSUS` (100% of algorithms)
 2. or `LNLib.ENSEMBLE.THRESHOLD$MAJORITY` (50% + 1 algorithms)
