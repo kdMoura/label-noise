@@ -203,7 +203,7 @@ It is also possible to use one of the following options as input
 
 - Given the memory and processing time needed, each step (data cleaning, generate IR..) was executed for every dataset and results were temporarily saved into a file 
 
-- The training and testing step was run 30 times and measures were evaluated by average values 
+- The training and testing step was run multiple times and measures were evaluated by average values 
 
 - Important: the code is a script and has no error handler. It is important data is well structured, organized, and correct, and that the script is executed as previously described.
 
