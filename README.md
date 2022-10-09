@@ -211,11 +211,19 @@ It is also possible to use one of the following options as input
 ## Citation
 ```
 bibtex
-@article{DBLP:journals/corr/abs-2112-01617,
-  author    = {Kecia G. Moura and Ricardo B. C. Prud{\^{e}}ncio and George D. C. Cavalcanti},
-  title     = {Label noise detection under the Noise at Random model with ensemble filters},
-  journal   = {arXiv preprint arXiv:2112.01617},
-  year      = {2021}
+@Article{Moura2022,
+	author={Moura, Kecia G. and Prud{\^e}ncio, Ricardo B.C. and Cavalcanti, George D.C.},
+	title={Label noise detection under the noise at random model with ensemble filters},
+	journal={Intelligent Data Analysis},
+	year={2022},
+	publisher={IOS Press},
+	volume={26},
+	pages={1119-1138},
+	keywords={Label noise; noise detection; ensemble methods; noise at random; ensemble noise filtering},
+	note={5},
+	issn={1571-4128},
+	doi={10.3233/IDA-215980},
+	url={https://doi.org/10.3233/IDA-215980}
 }
 ```
 
